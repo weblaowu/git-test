@@ -44,34 +44,43 @@ init命令把这个目录变成Git可以管理的仓库
 ```
 ![Alt text](./2019-03-15_101654.png)
 
-
-
-4、远程仓库 
-  先的有一个github账号，由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以，需要一点设置：
-  1. 创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key： 
+#####3、远程仓库 
+>-  先的有一个github账号，由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要一点设置：
+> 1. 创建SSH Key，在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有,需要创建SSH Key： 
 ```js {.line-numbers}
 // 创建 SSH Key 
 ssh-keygen -t rsa -C "your email"
 ```
-  2. 这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥。
-  3. 登陆GitHub，打开 'Account settings'，'SSH Keys'页面 把 id_rsa.pub 里面的内容复制出来，粘贴到key中, 点击 Add Key , 你就添加成功了  
-  4. 本地仓库和远程仓库进行连接 
-```
+>  2. 创建完成，会出现 .ssh 文件，文件中 id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥,复制里面内容。
+>  3. 登陆GitHub，打开 'Account settings' -> 'SSH Keys'页面 把刚才复制内容粘贴到 key 中, 点击 Add Key , 你就添加成功了
+
+![Alt text](./111.png)
+
+>  4. 现在你想把本地仓库和github上的仓库进行远程同步，这样github上的仓库既可以作为项目备份，也可以让别人看到。首先你必须得在github上新建一个仓库 
+
+![Alt text](./222.png)
+> 5. 关联远程仓库：**git remote add origin  github仓库地址**
+```js {.line-numbers}
+ // 回到 命令行窗口输入 origin就是远程库
  git remote add origin https://github.com/yourname/xxxx.git
- // 如果报错或者失败
+ // 如果报错或者失败：如
  fatal: remote origin already exists.
- // 输入命令： 
+ // 输入命令即可，重新设置 
  git remote rm origin 
-```    
- 5. 把本地仓库的内容推送到远程仓库 
 ```
- 
+
+> 6. **git push：** 把本地仓库的内容推送到远程仓库 
+```js {.line-numbers} 
+ // -u 会把本地的master分支和远程的master分支关联起来，之后可以简化命令
  git push -u origin master 
- // 如果报错
- error: failed to push some refs to 'git@github.com:....." Updates were rejected because the remote contains work that you do not have locally.
- 大概原因就是 意思是本地和远程的文件应该合并后才能上传本地的新文件
+ // 如果报错：如
+ error: failed to push some refs to 'git@github.com:....." Updates were rejected 
+ because the remote contains work that you do not have locally.
+ // 意思是本地和远程的文件应该合并后才能上传本地的新文件
+
  // 先拉下来，会自动合并
  git pull origin master
- // 在 push 
  
-```   
+ // 合并完成，再次push
+ git push -u origin master 
+```     
