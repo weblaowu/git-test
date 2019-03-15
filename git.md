@@ -29,19 +29,22 @@ init命令把这个目录变成Git可以管理的仓库
  touch 01test.js
  git add  01test.js 
 ```
-5. **git commit：** 用命令 git commit 把文件提交到仓库
-   -m 和面输入的是本次提交的说明
-```
+>3. **git commit：** 用命令 git commit 把文件提交到仓库
+   -m 后面输入的是本次提交的说明
+```js {.line-numbers}
  git commit -m "this is first commit"
 ```
-6. **git status：** git status命令可以让我们时刻掌握仓库当前的状态
-```
+>4. **git status：** 这个命令可以让我们时刻掌握仓库当前的状态
+```js {.line-numbers}
  // 比如修改 01test.js 内容
- const a  = 10;
- // 输入命令
- git status 
- 
+  const a  = 10;
+
+ // 在输入命令
+  git status 
 ```
+![Alt text](./2019-03-15_101654.png)
+
+
 
 4、远程仓库 
   先的有一个github账号，由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以，需要一点设置：
