@@ -74,7 +74,7 @@ ssh-keygen -t rsa -C "your email"
  // -u 会把本地的master分支和远程的master分支关联起来，之后可以简化命令
  git push -u origin master 
  // 如果报错：如
- error: failed to push some refs to 'git@github.com:....." Updates were rejected 
+ error: failed to push some refs to "git@github.com:....." Updates were rejected 
  because the remote contains work that you do not have locally.
  // 意思是本地和远程的文件应该合并后才能上传本地的新文件
 
