@@ -80,6 +80,10 @@ ssh-keygen -t rsa -C "your email"
 
  // 先拉下来，会自动合并
  git pull origin master
+
+// 如果报错: fatal: refusing to merge unrelated histories 
+// 表示是这是两个不相干的git库，可以强制合并到一起 
+git pull origin master --allow-unrelated-histories
  
  // 合并完成，再次push
  git push -u origin master 
